@@ -31,7 +31,7 @@
 
 static stream_rx_buffer_t rxbuf = {0}, rxbackup;
 
-#define USB_TXLEN 128
+#define USB_TXLEN 256
 
 typedef struct {
     size_t length;

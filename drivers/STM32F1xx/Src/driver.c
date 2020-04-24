@@ -649,10 +649,16 @@ void settings_changed (settings_t *settings)
             GPIO_Init.Pull = settings->limits.disable_pullup.z ? GPIO_NOPULL : GPIO_PULLUP;
             HAL_GPIO_Init(LIMIT_PORT, &GPIO_Init);
 
-#ifdef A_AXIS
+#ifdef A_LIMIT_BIT
             GPIO_Init.Pin = A_LIMIT_BIT;
             GPIO_Init.Mode = limit_ire.a ? GPIO_MODE_IT_RISING : GPIO_MODE_IT_FALLING;
             GPIO_Init.Pull = settings->limits.disable_pullup.a ? GPIO_NOPULL : GPIO_PULLUP;
+            HAL_GPIO_Init(LIMIT_PORT, &GPIO_Init);
+#endif
+#ifdef B_LIMIT_BIT
+            GPIO_Init.Pin = B_LIMIT_BIT;
+            GPIO_Init.Mode = limit_ire.b ? GPIO_MODE_IT_RISING : GPIO_MODE_IT_FALLING;
+            GPIO_Init.Pull = settings->limits.disable_pullup.b ? GPIO_NOPULL : GPIO_PULLUP;
             HAL_GPIO_Init(LIMIT_PORT, &GPIO_Init);
 #endif
             __HAL_GPIO_EXTI_CLEAR_IT(LIMIT_MASK);
@@ -675,9 +681,14 @@ void settings_changed (settings_t *settings)
             GPIO_Init.Pull = settings->limits.disable_pullup.z ? GPIO_NOPULL : GPIO_PULLUP;
             HAL_GPIO_Init(LIMIT_PORT, &GPIO_Init);
 
-#ifdef A_AXIS
+#ifdef A_LIMIT_BIT
             GPIO_Init.Pin = A_LIMIT_BIT;
             GPIO_Init.Pull = settings->limits.disable_pullup.a ? GPIO_NOPULL : GPIO_PULLUP;
+            HAL_GPIO_Init(LIMIT_PORT, &GPIO_Init);
+#endif
+#ifdef B_LIMIT_BIT
+            GPIO_Init.Pin = B_LIMIT_BIT;
+            GPIO_Init.Pull = settings->limits.disable_pullup.b ? GPIO_NOPULL : GPIO_PULLUP;
             HAL_GPIO_Init(LIMIT_PORT, &GPIO_Init);
 #endif
         }
